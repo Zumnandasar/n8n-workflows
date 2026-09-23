@@ -1,0 +1,260 @@
+{
+  "name": "JAMB PPROJECT -V2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -64,
+        16
+      ],
+      "id": "75679cb2-1ea3-4f12-a7bd-00450dba9ae4",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M",
+          "mode": "list",
+          "cachedResultName": "JAMB QUESTION BANK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "ENGLISH",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        144,
+        -144
+      ],
+      "id": "b70963b8-922b-4efc-bb96-b5c95a82cf31",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QV1YOMgoT7mCspJl",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M",
+          "mode": "list",
+          "cachedResultName": "JAMB QUESTION BANK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 215542949,
+          "mode": "list",
+          "cachedResultName": "MATHS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit#gid=215542949"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        144,
+        160
+      ],
+      "id": "b23016a8-4ce4-4e72-b926-9dfde8b866e7",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QV1YOMgoT7mCspJl",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nif (items.length === 0) {\n  throw new Error(\"No English questions were found.\");\n}\n\n// Pick one random question\nconst row = items[Math.floor(Math.random() * items.length)].json;\n\n// Function to find a column regardless of capitalization or spacing\nfunction getField(data, possibleNames) {\n  const keys = Object.keys(data);\n\n  const normalizedKeys = {};\n  for (const key of keys) {\n    normalizedKeys[key.trim().toUpperCase().replace(/[_-]/g, \" \")] = key;\n  }\n\n  for (const name of possibleNames) {\n    const normalized = name.toUpperCase().replace(/[_-]/g, \" \");\n    if (normalizedKeys[normalized]) {\n      return data[normalizedKeys[normalized]];\n    }\n  }\n\n  return undefined;\n}\n\nconst question = getField(row, [\n  \"QUESTION\",\n  \"QUESTIONS\"\n]);\n\nconst optionA = getField(row, [\n  \"A\",\n  \"OPTION A\",\n  \"OPTIONA\",\n  \"CHOICE A\"\n]);\n\nconst optionB = getField(row, [\n  \"B\",\n  \"OPTION B\",\n  \"OPTIONB\",\n  \"CHOICE B\"\n]);\n\nconst optionC = getField(row, [\n  \"C\",\n  \"OPTION C\",\n  \"OPTIONC\",\n  \"CHOICE C\"\n]);\n\nconst optionD = getField(row, [\n  \"D\",\n  \"OPTION D\",\n  \"OPTIOND\",\n  \"CHOICE D\"\n]);\n\nconst answer = getField(row, [\n  \"ANSWER\",\n  \"CORRECT ANSWER\",\n  \"CORRECT OPTION\"\n]);\n\nreturn [\n  {\n    json: {\n      subject: \"English\",\n      question,\n      optionA,\n      optionB,\n      optionC,\n      optionD,\n      answer\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        -144
+      ],
+      "id": "80f8cef1-219f-4227-ad83-9808fd9116b2",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nif (items.length === 0) {\n  throw new Error(\"No Maths questions were found.\");\n}\n\n// Pick one random question\nconst row = items[Math.floor(Math.random() * items.length)].json;\n\n// Function to find a column regardless of capitalization or spacing\nfunction getField(data, possibleNames) {\n  const keys = Object.keys(data);\n\n  const normalizedKeys = {};\n  for (const key of keys) {\n    normalizedKeys[key.trim().toUpperCase().replace(/[_-]/g, \" \")] = key;\n  }\n\n  for (const name of possibleNames) {\n    const normalized = name.toUpperCase().replace(/[_-]/g, \" \");\n    if (normalizedKeys[normalized]) {\n      return data[normalizedKeys[normalized]];\n    }\n  }\n\n  return undefined;\n}\n\nconst question = getField(row, [\n  \"QUESTION\",\n  \"QUESTIONS\"\n]);\n\nconst optionA = getField(row, [\n  \"A\",\n  \"OPTION A\",\n  \"OPTIONA\",\n  \"CHOICE A\"\n]);\n\nconst optionB = getField(row, [\n  \"B\",\n  \"OPTION B\",\n  \"OPTIONB\",\n  \"CHOICE B\"\n]);\n\nconst optionC = getField(row, [\n  \"C\",\n  \"OPTION C\",\n  \"OPTIONC\",\n  \"CHOICE C\"\n]);\n\nconst optionD = getField(row, [\n  \"D\",\n  \"OPTION D\",\n  \"OPTIOND\",\n  \"CHOICE D\"\n]);\n\nconst answer = getField(row, [\n  \"ANSWER\",\n  \"CORRECT ANSWER\",\n  \"CORRECT OPTION\"\n]);\n\nreturn [\n  {\n    json: {\n      subject: \"Mathematics\",\n      question,\n      optionA,\n      optionB,\n      optionC,\n      optionD,\n      answer\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        160
+      ],
+      "id": "bb34aca0-901d-4094-9bdc-59bd2ee1ea59",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        544,
+        32
+      ],
+      "id": "be97e9e1-af4e-43a4-a932-078b3f4f4ce9",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nconst english = items.find(item => item.json.subject === \"English\");\nconst maths = items.find(item => item.json.subject === \"Mathematics\");\n\nconst e = english.json;\nconst m = maths.json;\n\nconst message =\n`📚 JAMB DAILY PRACTICE\n\n🇬🇧 ENGLISH\n\n1. ${e.question}\n\nA. ${e.optionA}\nB. ${e.optionB}\nC. ${e.optionC}\nD. ${e.optionD}\n\n🔢 MATHEMATICS\n\n2. ${m.question}\n\nA. ${m.optionA}\nB. ${m.optionB}\nC. ${m.optionC}\nD. ${m.optionD}\n\n✅ ANSWERS\n\nEnglish: ${e.answer}\nMathematics: ${m.answer}`;\n\nreturn [\n  {\n    json: {\n      message: message\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        32
+      ],
+      "id": "17443cfd-b683-4fee-a785-e32062b9997e",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "chatId": "7664605708",
+        "text": "={{$json.message}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        944,
+        32
+      ],
+      "id": "e93c63d2-a50d-451b-914d-2afd15a5de2e",
+      "name": "Send a text message",
+      "webhookId": "7af5debb-abf7-4bc9-9ed6-202687ae0b76",
+      "credentials": {
+        "telegramApi": {
+          "id": "aUhNeAIR0hmH4hvz",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "88e33aca-e961-4f63-9e84-7dd2226dddd3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7c78ea94affa7346d2ecc2f8a0261cc6c02a5a2d5689b7455e7b9953d56fe3cb"
+  },
+  "nodeGroups": [],
+  "id": "Pp7eqfSsx7MXcd0p",
+  "tags": []
+}
