@@ -5,9 +5,7 @@ This repository contains my n8n automation projects.
 ## Projects
 
 - JAMB Daily Practice
-- Telegram News Automation
-- Finance Tracker
 
 ## JAMB Daily Practice
 
-This automation sends JAMB practice questions to Telegram.
+This automation sends JAMB practice questions to Telegram daily.
