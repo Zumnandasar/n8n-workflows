@@ -1,0 +1,1310 @@
+{
+  "name": "JAMB STUDENT REGISTRATION",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "adf53786-36bf-4bef-920f-643c58926092",
+              "leftValue": "={{ $json.message.text.toLowerCase() }}",
+              "rightValue": "jamb",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.4,
+      "position": [
+        -1904,
+        -1072
+      ],
+      "id": "cd4e9059-0324-4b06-aec4-7a2ffd324da0",
+      "name": "JAMB KEYWORD"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}",
+        "text": "📚 Welcome to JAMB Daily Practice Registration!  Let's get you registered.  **Question 1 of 5**  Please enter your FULL NAME.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -1536,
+        -1280
+      ],
+      "id": "a878a012-e88f-4be5-9b6f-4af2801d385f",
+      "name": "SENDS WELCOME AND ASKS FOR FULL NAME",
+      "webhookId": "27223195-fbb7-493a-9789-c2d9e1af28a3",
+      "credentials": {
+        "telegramApi": {
+          "id": "ZZqlYXgDF12uY1iU",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "6622f2ef-daf6-48e8-b467-570a5e9e787a",
+              "leftValue": "={{ $json.current_step }}",
+              "rightValue": "full_name",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.4,
+      "position": [
+        -1456,
+        -896
+      ],
+      "id": "13af13ba-7c76-47bc-8f21-f67af9fc4dbd",
+      "name": "CHECKS FULL NAME STAGE"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}",
+        "text": "Thank you!  Your full name has been saved successfully.  **Question 2 of 5**  Please enter your PHONE NUMBER.  Example: 08012345678",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -1008,
+        -1184
+      ],
+      "id": "c688cba7-d7ec-43d7-9c25-ae5b638ec9a0",
+      "name": "ASK FOR PHONE NUMBER",
+      "webhookId": "ca02d5f4-cfdb-4a24-8278-b6a80359dfbf",
+      "credentials": {
+        "telegramApi": {
+          "id": "ZZqlYXgDF12uY1iU",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "ee23507d-fbb0-47bf-9b0b-d8a3302ef72f",
+              "leftValue": "={{ $json.current_step }}",
+              "rightValue": "phone_number",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.4,
+      "position": [
+        -1248,
+        -784
+      ],
+      "id": "40783613-946e-479b-b264-12e7391567be",
+      "name": "PHONE NUMBER STAGE"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "8122bc76-e187-4698-8e2d-5d482ca59efd",
+              "leftValue": "={{ $json.current_step }}",
+              "rightValue": "email",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.4,
+      "position": [
+        -1008,
+        -704
+      ],
+      "id": "73e05149-8cae-435b-b1c6-234251596fc0",
+      "name": "CHECK EMAIL STAGE"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}",
+        "text": "Your phone number has been saved successfully.  **Question 3 of 5**  Please enter your EMAIL ADDRESS.  Example: student@gmail.com",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -784,
+        -992
+      ],
+      "id": "1b797d76-1b71-4c5d-a77b-ea9e06eaff5f",
+      "name": "ASK FOR EMAIL",
+      "webhookId": "1e2b45f5-c442-4a51-90ac-d1b9c658351b",
+      "credentials": {
+        "telegramApi": {
+          "id": "ZZqlYXgDF12uY1iU",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}",
+        "text": "Your email address has been saved successfully.  **Question 4 of 5: Choose Your Elective Subjects**  English Language is compulsory.  Please select EXACTLY THREE subjects from the list below:  1. Mathematics 2. Biology 3. Chemistry 4. Physics 5. Literature in English 6. Economics  **How to answer:**  Type your THREE chosen subjects in one message, separated by commas.  Example: Mathematics, Physics, Chemistry  Only the six subjects listed above are accepted.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -560,
+        -800
+      ],
+      "id": "c2b2c78e-39f1-48d8-ad7c-a0dd88a5516e",
+      "name": "ASK FOR ELECTIVE SUBJECT",
+      "webhookId": "a5db474f-38db-4579-8f0e-8080c5196ff2",
+      "credentials": {
+        "telegramApi": {
+          "id": "ZZqlYXgDF12uY1iU",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "6a4bc7e3-20ee-4a66-af68-c4ce585cfe33",
+              "leftValue": "={{ $json.current_step }}",
+              "rightValue": "elective_subjects",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.4,
+      "position": [
+        -784,
+        -608
+      ],
+      "id": "4fea43e8-bff9-4a05-8a8a-6c814c0431b5",
+      "name": "CHECK ELECTIVE SUBJECT STAGE"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "\nconst message = $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.text;\n\nconst allowedSubjects = [\n  \"Mathematics\",\n  \"Biology\",\n  \"Chemistry\",\n  \"Physics\",\n  \"Literature in English\",\n  \"Economics\"\n];\n\nconst selected = message\n  .split(\",\")\n  .map(subject => subject.trim());\n\nconst normalized = selected.map(subject => subject.toLowerCase());\n\nconst uniqueSubjects = [...new Set(normalized)];\n\nconst valid =\n  selected.length === 3 &&\n  uniqueSubjects.length === 3 &&\n  selected.every(subject =>\n    allowedSubjects.some(\n      allowed => allowed.toLowerCase() === subject.toLowerCase()\n    )\n  );\n\nconst correctedSubjects = selected.map(subject =>\n  allowedSubjects.find(\n    allowed => allowed.toLowerCase() === subject.toLowerCase()\n  )\n);\n\nreturn {\n  json: {\n    ...$json,\n    elective_valid: valid,\n    elective_subjects: valid ? correctedSubjects.join(\", \") : \"\",\n    validation_message: valid\n      ? \"Your elective subjects are valid.\"\n      : \"Invalid selection. Please choose exactly THREE different subjects from the approved list.\"\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        -608
+      ],
+      "id": "1f2e5fd2-d3b9-4ca6-a7df-d1ce82c20176",
+      "name": "VALIDATE 3 ELECTIVE SUBJECTS"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "9deaff68-73f9-476b-aae2-60df33446041",
+              "leftValue": "={{ $json.elective_valid }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.4,
+      "position": [
+        -336,
+        -608
+      ],
+      "id": "fa98170d-0b89-4496-bd34-1708ad157b6c",
+      "name": "CHECK ELECTIVE VALIDATION"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}",
+        "text": "Your elective subject selection is incorrect.  Please select EXACTLY THREE different subjects from this list:  1. Mathematics 2. Biology 3. Chemistry 4. Physics 5. Literature in English 6. Economics  Separate your choices with commas.  Example: Mathematics, Physics, Chemistry  Please try again.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -112,
+        -512
+      ],
+      "id": "3b1c5042-f5ea-4f68-a260-fc62b4ff4e59",
+      "name": "REQUEST CORRECT ELECTIVE SELECTION",
+      "webhookId": "4a2b9f94-7068-49e4-8e9b-9eb7e56934fa",
+      "credentials": {
+        "telegramApi": {
+          "id": "ZZqlYXgDF12uY1iU",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}",
+        "text": "🎉 REGISTRATION SUCCESSFUL!  Your JAMB Daily Practice registration is complete.  Your registered subjects are:  1. English Language (Compulsory) 2. Your three selected elective subjects  You are now registered for JAMB Daily Practice.  Get ready to practice! 📚",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        -704
+      ],
+      "id": "7132c83e-c646-402f-9168-c4d34db76f34",
+      "name": "SEND REGISTRATION SUCCESS MESSAGE",
+      "webhookId": "b95fe2a6-963c-4d16-a9fa-04b197b621b2",
+      "credentials": {
+        "telegramApi": {
+          "id": "ZZqlYXgDF12uY1iU",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -2128,
+        -1072
+      ],
+      "id": "d3969001-31f4-4b76-a8a3-2cbe72e26394",
+      "name": "RECIEVES STUDENTS JAMB MESSAGE",
+      "webhookId": "b432de0b-6c27-4317-ab0b-ab49383b8fbc",
+      "credentials": {
+        "telegramApi": {
+          "id": "ZZqlYXgDF12uY1iU",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M",
+          "mode": "list",
+          "cachedResultName": "JAMB QUESTION BANK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1732815706,
+          "mode": "list",
+          "cachedResultName": "STUDENT REGISTRATION ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit#gid=1732815706"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Chat_ID": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}",
+            "current_step": "full_name",
+            "registration_status": "pending"
+          },
+          "matchingColumns": [
+            "Chat_ID"
+          ],
+          "schema": [
+            {
+              "id": "Chat_ID",
+              "displayName": "Chat_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "full_name",
+              "displayName": "full_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "phone_number",
+              "displayName": "phone_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "compulsory_subject",
+              "displayName": "compulsory_subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "elective_subjects",
+              "displayName": "elective_subjects",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "registration_status",
+              "displayName": "registration_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "current_step",
+              "displayName": "current_step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1728,
+        -1280
+      ],
+      "id": "58f5c838-c0ec-40b8-8e8d-0e0f9da66d10",
+      "name": "REGISTRATION RECORD1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QV1YOMgoT7mCspJl",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M",
+          "mode": "list",
+          "cachedResultName": "JAMB QUESTION BANK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1732815706,
+          "mode": "list",
+          "cachedResultName": "STUDENT REGISTRATION ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit#gid=1732815706"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Chat_ID": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}",
+            "full_name": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.text }}",
+            "current_step": "phone_number"
+          },
+          "matchingColumns": [
+            "Chat_ID"
+          ],
+          "schema": [
+            {
+              "id": "Chat_ID",
+              "displayName": "Chat_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "full_name",
+              "displayName": "full_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "phone_number",
+              "displayName": "phone_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "compulsory_subject",
+              "displayName": "compulsory_subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "elective_subjects",
+              "displayName": "elective_subjects",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "registration_status",
+              "displayName": "registration_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "current_step",
+              "displayName": "current_step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1216,
+        -1200
+      ],
+      "id": "a9ef32e3-b871-46d5-8eb6-7fb7a5b4c14a",
+      "name": "SAVE FULL NAME",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QV1YOMgoT7mCspJl",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M",
+          "mode": "list",
+          "cachedResultName": "JAMB QUESTION BANK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1732815706,
+          "mode": "list",
+          "cachedResultName": "STUDENT REGISTRATION ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit#gid=1732815706"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Chat_ID": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}",
+            "elective_subjects": "={{ $json.elective_subjects }}",
+            "registration_status": "completed",
+            "current_step": "completed"
+          },
+          "matchingColumns": [
+            "Chat_ID"
+          ],
+          "schema": [
+            {
+              "id": "Chat_ID",
+              "displayName": "Chat_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "full_name",
+              "displayName": "full_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "phone_number",
+              "displayName": "phone_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "compulsory_subject",
+              "displayName": "compulsory_subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "elective_subjects",
+              "displayName": "elective_subjects",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "registration_status",
+              "displayName": "registration_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "current_step",
+              "displayName": "current_step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -112,
+        -704
+      ],
+      "id": "2b68502a-45eb-4ed5-9c82-83bfdce167d7",
+      "name": "COMPLETE STUDENT REGISTRATION",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QV1YOMgoT7mCspJl",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M",
+          "mode": "list",
+          "cachedResultName": "JAMB QUESTION BANK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1732815706,
+          "mode": "list",
+          "cachedResultName": "STUDENT REGISTRATION ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit#gid=1732815706"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Chat_ID": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}",
+            "email": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.text }}",
+            "compulsory_subject": "English Language",
+            "current_step": "elective_subjects"
+          },
+          "matchingColumns": [
+            "Chat_ID"
+          ],
+          "schema": [
+            {
+              "id": "Chat_ID",
+              "displayName": "Chat_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "full_name",
+              "displayName": "full_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "phone_number",
+              "displayName": "phone_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "compulsory_subject",
+              "displayName": "compulsory_subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "elective_subjects",
+              "displayName": "elective_subjects",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "registration_status",
+              "displayName": "registration_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "current_step",
+              "displayName": "current_step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -784,
+        -800
+      ],
+      "id": "9faf1180-4e83-487f-9427-89329e0082e4",
+      "name": "SAVE EMAIL AND COMPULSRY SUBJECT",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QV1YOMgoT7mCspJl",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M",
+          "mode": "list",
+          "cachedResultName": "JAMB QUESTION BANK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1732815706,
+          "mode": "list",
+          "cachedResultName": "STUDENT REGISTRATION ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit#gid=1732815706"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Chat_ID": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}",
+            "phone_number": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.text }}",
+            "current_step": "email"
+          },
+          "matchingColumns": [
+            "Chat_ID"
+          ],
+          "schema": [
+            {
+              "id": "Chat_ID",
+              "displayName": "Chat_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "full_name",
+              "displayName": "full_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "phone_number",
+              "displayName": "phone_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "compulsory_subject",
+              "displayName": "compulsory_subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "elective_subjects",
+              "displayName": "elective_subjects",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "registration_status",
+              "displayName": "registration_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "current_step",
+              "displayName": "current_step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1008,
+        -944
+      ],
+      "id": "d237a164-a226-4c55-96bb-54f26d93f72e",
+      "name": "SAVES PHONE NUMBER",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QV1YOMgoT7mCspJl",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M",
+          "mode": "list",
+          "cachedResultName": "JAMB QUESTION BANK",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1732815706,
+          "mode": "list",
+          "cachedResultName": "STUDENT REGISTRATION ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WY6UXgeKQROHTVuJu0pNfrSGheznu3iisohhRJN4K_M/edit#gid=1732815706"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Chat_ID",
+              "lookupValue": "={{ $('RECIEVES STUDENTS JAMB MESSAGE').item.json.message.chat.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1680,
+        -896
+      ],
+      "id": "b54154e0-ac27-4ec4-b86c-a280db026187",
+      "name": "STUDENTS RECORD",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QV1YOMgoT7mCspJl",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "JAMB KEYWORD": {
+      "main": [
+        [
+          {
+            "node": "REGISTRATION RECORD1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "STUDENTS RECORD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SENDS WELCOME AND ASKS FOR FULL NAME": {
+      "main": [
+        []
+      ]
+    },
+    "CHECKS FULL NAME STAGE": {
+      "main": [
+        [
+          {
+            "node": "SAVE FULL NAME",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "PHONE NUMBER STAGE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PHONE NUMBER STAGE": {
+      "main": [
+        [
+          {
+            "node": "SAVES PHONE NUMBER",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CHECK EMAIL STAGE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CHECK EMAIL STAGE": {
+      "main": [
+        [
+          {
+            "node": "SAVE EMAIL AND COMPULSRY SUBJECT",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CHECK ELECTIVE SUBJECT STAGE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CHECK ELECTIVE SUBJECT STAGE": {
+      "main": [
+        [
+          {
+            "node": "VALIDATE 3 ELECTIVE SUBJECTS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VALIDATE 3 ELECTIVE SUBJECTS": {
+      "main": [
+        [
+          {
+            "node": "CHECK ELECTIVE VALIDATION",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CHECK ELECTIVE VALIDATION": {
+      "main": [
+        [
+          {
+            "node": "COMPLETE STUDENT REGISTRATION",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "REQUEST CORRECT ELECTIVE SELECTION",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RECIEVES STUDENTS JAMB MESSAGE": {
+      "main": [
+        [
+          {
+            "node": "JAMB KEYWORD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "REGISTRATION RECORD1": {
+      "main": [
+        [
+          {
+            "node": "SENDS WELCOME AND ASKS FOR FULL NAME",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SAVE FULL NAME": {
+      "main": [
+        [
+          {
+            "node": "ASK FOR PHONE NUMBER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "COMPLETE STUDENT REGISTRATION": {
+      "main": [
+        [
+          {
+            "node": "SEND REGISTRATION SUCCESS MESSAGE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SAVE EMAIL AND COMPULSRY SUBJECT": {
+      "main": [
+        [
+          {
+            "node": "ASK FOR ELECTIVE SUBJECT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SAVES PHONE NUMBER": {
+      "main": [
+        [
+          {
+            "node": "ASK FOR EMAIL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "STUDENTS RECORD": {
+      "main": [
+        [
+          {
+            "node": "CHECKS FULL NAME STAGE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "02bfe419-53b2-420b-87ba-7e74390dff4e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7c78ea94affa7346d2ecc2f8a0261cc6c02a5a2d5689b7455e7b9953d56fe3cb"
+  },
+  "nodeGroups": [],
+  "id": "seKJrgaLMgcv97Ho",
+  "tags": []
+}
